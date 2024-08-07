@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 import os
 from typing import *
 import api
-import time
 
 import utils
 

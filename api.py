@@ -1,8 +1,5 @@
-from copy import deepcopy
-import random
 from typing import *
 
-import discord
 from config import *
 import json
 import os
