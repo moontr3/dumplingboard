@@ -37,10 +37,14 @@ pip install -r requirements.txt
 BOT_TOKEN=<your_token>
 ```
 
+- Put your ID in the admin list in [`config.py`]('https://github.com/moontr3/dumplingboard/blob/main/config.py')
+
 - Launch the bot
 ```sh
 python main.py
 ```
+
+- To access slash commands, send `!st` command in a server with your bot and reload your Discord client.
 
 > Don't worry if you see a panic message in the terminal.
 > It shows up everytime the database file is not found.
