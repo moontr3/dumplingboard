@@ -291,7 +291,7 @@ async def on_raw_reaction_add(payload:discord.RawReactionActionEvent):
         log(f'Error while sending post: {e}', level=ERROR)
 
         # removing post
-        mg.remove_post(payload.gui)
+        mg.remove_post(payload.guild_id, payload.message_id)
 
 
 # ping
