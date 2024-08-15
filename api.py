@@ -159,7 +159,7 @@ class Manager:
 
     def send_post(self, guild_id:int, message_id:int) -> Post:
         '''
-        Sets the guild's channel.
+        Sends the post in the channel.
         '''
         self.check_guild(guild_id)
 
@@ -170,6 +170,24 @@ class Manager:
         self.commit()
 
         return post
+
+
+    def remove_post(self, guild_id:int, message_id:int):
+        '''
+        Removes the post from the DB.
+        '''
+        self.check_guild(guild_id)
+
+        guild = self.guilds[guild_id]
+        new = []    
+    
+        for i in guild.sent_posts:
+            if i.id == message_id:
+                continue
+            new.append(i)
+
+        guild.sent_posts = new
+        self.commit()
 
 
     def set_post_id(self, guild_id:int, index:int, id:int):

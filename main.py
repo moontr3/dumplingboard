@@ -275,17 +275,23 @@ async def on_raw_reaction_add(payload:discord.RawReactionActionEvent):
     )
 
     # sending post
-    embed = get_post_embed(post, message, reaction.count)
+    try:
+        embed = get_post_embed(post, message, reaction.count)
 
-    view = discord.ui.View()
-    button = discord.ui.Button(
-        label='Go to message',
-        url=message.jump_url
-    )
-    view.add_item(button)
+        view = discord.ui.View()
+        button = discord.ui.Button(
+            label='Go to message',
+            url=message.jump_url
+        )
+        view.add_item(button)
 
-    message = await db_channel.send(embed=embed, view=view)
-    mg.set_post_id(guild.id, post.number, message.id)
+        message = await db_channel.send(embed=embed, view=view)
+        mg.set_post_id(guild.id, post.number, message.id)
+    except Exception as e:
+        log(f'Error while sending post: {e}', level=ERROR)
+
+        # removing post
+        mg.remove_post(payload.gui)
 
 
 # ping
