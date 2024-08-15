@@ -47,6 +47,10 @@ async def on_command_error(ctx: commands.Context, error):
         log(f'{ctx.author} {ctx.author.id} did smth but bot can\'t: {ctx.message.content}', level=ERROR)
         await ctx.reply(embed=BOT_MISSING_PERMS_EMBED, ephemeral=True)
 
+    # unknown command
+    elif isinstance(error, commands.CommandNotFound):
+        log(f'{ctx.author} {ctx.author.id} issued an unknown command: {ctx.message.content}', level=ERROR)
+
     # everything else basically
     else:
         log(f'{ctx.author} {ctx.author.id} issued a command error: {error}', level=ERROR)
